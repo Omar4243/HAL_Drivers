@@ -1,6 +1,15 @@
+/*****************************************************************************
+ * @Author                : Omar MEGAHED<omar.megahed@valeo.com>             *
+ * @CreatedDate           : 2023-03-12 20:38:08                              *
+ * @LastEditors           : Omar MEGAHED<omar.megahed@valeo.com>             *
+ * @LastEditDate          : 2023-03-12 22:17:13                              *
+ * @FilePath              : LED_prg.c                                        *
+ ****************************************************************************/
+
 /*headers*/
-#include "LED.h"
-#include "Std_Type.h"
+#include "LED_int.h"
+#include "std_type.h"
+#include "MCAL_wrp.h" 
 /***************************** App Configuration **********************************/
 static LED_t LED_config[max_led_num] = { // add led config here
     {.port = GPIOC, .pin = PIN13, .LED_active = Active_Low, .LED_status=LED_OFF},
@@ -9,7 +18,7 @@ static LED_t LED_config[max_led_num] = { // add led config here
 /*function implementation*/
 void LED_Init(void)
 {
-  uint8 i;
+  u8 i;
   for (i = 0; i < max_led_num; i++)
   {
     if (LED_config[i].LED_active == Active_High)
@@ -27,7 +36,7 @@ void LED_Init(void)
 
 void LED_Update(void)
 {
-  uint8 i;
+  u8 i;
   for (i = 0; i < max_led_num; i++)
   {
     if (LED_config[i].LED_status == LED_ON)
